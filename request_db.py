@@ -1,6 +1,7 @@
 import psycopg2
 from config_db import *
 
+list = []
 
 try:
     connection = psycopg2.connect(
@@ -13,11 +14,11 @@ try:
 
     with connection.cursor() as cursor:
         cursor.execute(
-            "SELECT version();"
+            "SELECT *;"
         )
 
         print(cursor.fetchone())
-
+        list.append(cursor.fetchone())
 
 except Exception as ex:
     print("[ERROR] Ошибка подключения к базе данных", ex)
